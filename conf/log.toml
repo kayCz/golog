@@ -1,0 +1,6 @@
+#log配置
+[log]
+    level = "error"
+    filePath = "./go.log"
+    flags = "LstdFlags"
+
