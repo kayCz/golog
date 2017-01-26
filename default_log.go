@@ -9,8 +9,8 @@ var defaultLog *Logger = new("./conf/log.toml")
 func new(configPath string) *Logger {
 	l , e := NewInstance(configPath)
 	if e != nil {
-		l ,_ := newLogger(&Option{Log{Level:"info", FilePath:"./go.log", Flags:"LstdFlags"}})
-		return l
+		ll ,_ := newLogger(&Option{Log{Level:"info", FilePath:"./go.log", Flags:"LstdFlags"}})
+		return ll
 	}
 	return l
 }
