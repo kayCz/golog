@@ -32,7 +32,6 @@ type Logger struct {
 }
 
 func NewInstance(confPath string) (*Logger, error){
-
 	l := &Logger{}
 	var option Option
 	e := loadToml(confPath, &option)
@@ -46,6 +45,7 @@ func NewInstance(confPath string) (*Logger, error){
 }
 
 func newLogger(option *Option) (*Logger,error){
+	l := &Logger{}
 	file , err := os.OpenFile(option.Log.FilePath, os.O_RDWR | os.O_APPEND | os.O_CREATE, 0666)
 	if err != nil {
 		return l, err
