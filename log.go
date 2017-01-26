@@ -41,28 +41,33 @@ func NewInstance(confPath string) (*Logger, error){
 		return l, e
 	}
 
+	return newLogger(&option)
+
+}
+
+func newLogger(option *Option) (*Logger,error){
 	file , err := os.OpenFile(option.Log.FilePath, os.O_RDWR | os.O_APPEND | os.O_CREATE, 0666)
 	if err != nil {
 		return l, err
 	}
 
 	switch strings.ToLower(option.Log.Level) {
-		case "debug": l.level = DEBUG
-		case "info" : l.level = INFO
-		case "warn" : l.level = WARN
-		case "error": l.level = ERROR
-		case "fatal": l.level = FATAL
-		default:      l.level = ERROR
+	case "debug": l.level = DEBUG
+	case "info" : l.level = INFO
+	case "warn" : l.level = WARN
+	case "error": l.level = ERROR
+	case "fatal": l.level = FATAL
+	default:      l.level = ERROR
 	}
 	switch strings.ToLower(option.Log.Flags) {
-		case "ldate": 		l.flags = log.Ldate
-		case "llongfile" : 	l.flags = log.Llongfile
-		case "lmicroseconds" :  l.flags = log.Lmicroseconds
-		case "lshortfile": 	l.flags = log.Lshortfile
-		case "ltime": 		l.flags = log.Ltime
-		case "lutc": 		l.flags = log.LUTC
-		case "lltdflags":	l.flags = log.LstdFlags
-		default:      		l.flags = log.LstdFlags
+	case "ldate": 		l.flags = log.Ldate
+	case "llongfile" : 	l.flags = log.Llongfile
+	case "lmicroseconds" :  l.flags = log.Lmicroseconds
+	case "lshortfile": 	l.flags = log.Lshortfile
+	case "ltime": 		l.flags = log.Ltime
+	case "lutc": 		l.flags = log.LUTC
+	case "lltdflags":	l.flags = log.LstdFlags
+	default:      		l.flags = log.LstdFlags
 	}
 
 	logger := log.New(file, "", l.flags)
