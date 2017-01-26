@@ -61,7 +61,7 @@ func NewInstance(confPath string) (*Logger, error){
 		case "lshortfile": 	l.flags = log.Lshortfile
 		case "ltime": 		l.flags = log.Ltime
 		case "lutc": 		l.flags = log.LUTC
-		case "Lltdflags":	l.flags = log.LstdFlags
+		case "lltdflags":	l.flags = log.LstdFlags
 		default:      		l.flags = log.LstdFlags
 	}
 
